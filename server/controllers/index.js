@@ -111,16 +111,8 @@ module.exports.processRegisterPage = (req,res, next) => {
                 displayName: req.user ? req.user.displayName: ''                
             });
         }
-        else
-        {
-            //if no error exists, then registration is successful
 
-            // redirect the user and authenticate them
-            return passport.authenticate('local') (req, res, () => {
-                res.redirect('/business-list');
-            });
-        }
-    });
+    })
 }
 
 module.exports.performLogout = (req, res, next) => {
