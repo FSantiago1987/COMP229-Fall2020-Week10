@@ -101,12 +101,16 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 passport.use(strategy);
 
 //routing
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/book-list', bookRouter);
-app.use('/business-list', listRouter);
-app.use('/auth', authRouter);
-app.use('/orders', ordersRouter);
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/book-list', bookRouter);
+app.use('/api/business-list', listRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/orders', ordersRouter);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
