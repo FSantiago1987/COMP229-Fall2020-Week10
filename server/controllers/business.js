@@ -2,11 +2,14 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
+let jwt = require('jsonwebtoken');
+
 let Business = require('../models/business');
 
 module.exports.displayBusinessList = async (req, res, next) =>{
     try {
         let businessList = await Business.find({})
+        .collation({ locale: "en" })
         .sort({name: 'asc'})  
         res.render('business/list', 
         {title: 'Business Contact List', 
